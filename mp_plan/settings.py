@@ -44,10 +44,13 @@ THIRD_PARTY_APPS = [
     'filer',
     'mptt',
     'django_extensions', # для профилирования
+    'sitetree',
+    'etc'
 ]
 
 LOCAL_APPS = [
     'draft',
+    'demo',
 ]
 
 INSTALLED_APPS =  DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -65,10 +68,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'demo.middleware.language_activator',
+    'demo.middleware.theme_activator',
 ]
 
 ROOT_URLCONF = 'mp_plan.urls'
-
+html_theme = 'bootstrap'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -140,3 +146,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+PROJECT_DIR=os.path.dirname(__file__)
+STATICFILES_DIRS= (os.path.join(BASE_DIR, 'static'), )
+STATIC_ROOT = os.path.join(PROJECT_DIR,'static/',)
+PROJECT_PATH = os.path.join(PROJECT_DIR,'static/')
+
+MEDIA_ROOT=os.path.join(BASE_DIR,'uploads')
+MEDIA_URL = '/media/'
+
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
