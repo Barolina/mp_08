@@ -1,4 +1,4 @@
-Django==1.11.4
+Django==2.2.28
 django-etc==0.10.0
 django-extensions==1.8.1
 django-filer==1.2.8
